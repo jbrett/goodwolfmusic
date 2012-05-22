@@ -1,0 +1,944 @@
+
+/** jPlayer **/
+/** This is NOT the player interface, it is the actual jPlayer element that contains the <audio>, <video>, and flash objects
+Do not modify this unless you know what you're doing **/
+.jp-jplayer{
+    position:absolute;
+    z-index:-1;
+    height:0;
+    width:0; /**TODO: If I remove this width height, see how website example is affected **/
+}
+/** Player Interface **/
+
+/** Player basic layout **/
+#mb-player-wrapper, #media-box-player {
+    position:relative;
+    bottom: 0;
+    left: 0;
+    width: inherit;
+    height: 40px;
+}
+
+#mb-player-interface {
+    display: block;
+    position: relative;
+    bottom: 0;
+    width: inherit;
+    height: 40px;
+    z-index: 99999;
+    background: #292929 url(../images/player-bg.png) repeat-x 0 0 scroll;
+}
+
+#jp-controls {
+    height: 40px;
+    width: 100px;
+    float: left;
+
+}
+
+#jp-progress-wrapper {
+    margin: 0 145px 0 100px;
+    height: 40px;
+    padding: 0 20px;
+}
+
+#jp-right-controls {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 40px;
+    display: block;
+    width: 135px;
+}
+
+/** Controls: Play, Pause, Next, Prev **/
+.jp-controls {
+    margin: 0;
+}
+
+.jp-controls li {
+    display: inline;
+}
+
+.jp-controls a {
+    float: left;
+    display: block;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    text-indent: -99999em;
+}
+
+.jp-controls .jp-play {
+    background: transparent url(../images/player-play.png) center center no-repeat;
+}
+
+.jp-controls .jp-play:hover {
+    background: transparent url(../images/player-play-active.png) center center no-repeat;
+}
+
+.jp-controls .jp-pause {
+    background: transparent url(../images/player-pause.png) center center no-repeat;
+}
+
+.jp-controls .jp-pause:hover {
+    background: transparent url(../images/player-pause-active.png) center center no-repeat;
+}
+
+.jp-controls .jp-next {
+    width: 30px;
+    background: transparent url(../images/player-next.png) center center no-repeat;
+}
+
+.jp-controls .jp-next:hover {
+    background: transparent url(../images/player-next-active.png) center center no-repeat;
+}
+
+.jp-controls .jp-previous {
+    width: 30px;
+    background: transparent url(../images/player-prev.png) center center no-repeat;
+}
+
+.jp-controls .jp-previous:hover {
+    background: transparent url(../images/player-prev-active.png) center center no-repeat;
+}
+
+.not-playing .jp-pause {
+    display: none;
+}
+
+.jp-controls li.hide {
+    display: none;
+}
+
+/** Time: Current time, Duration **/
+#jp-times {
+    width: 85px;
+    float: right;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 10px;
+    height: 14px;
+    overflow: hidden;
+    text-shadow: 0 1px 0 #000;
+}
+
+.jp-current-time {
+    display: block;
+    float: left;
+    color: white;
+    border-right: 1px solid black;
+    padding-right: 5px;
+    height: 14px;
+    line-height: 14px;
+}
+
+.jp-duration {
+    display: block;
+    float: left;
+    color: #999;
+    border-left: 1px solid #333;
+    padding-left: 5px;
+    height: 14px;
+    line-height: 14px;
+}
+
+/** Volume **/
+.jp-volume-indicator {
+    display: block;
+    float: left;
+    display: block;
+    width: 40px;
+    height: 40px;
+    background: transparent url(../images/player-volume-3-3.png) no-repeat center center scroll;
+}
+
+.mb-volume-bar{
+    height:120px;
+    width:24px;
+    background: #333 url(../images/player-volume-bg.png) repeat-y 0 0 scroll;
+    display:none;
+    border:1px solid #222;
+    border-radius:2px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+}
+
+
+
+.mb-volume-slider{
+    background: #292929 url(../images/player-volume-slider-bg.png) repeat-y 0 0 scroll;
+    height:100px;
+    width:8px;
+    margin:10px auto;
+    border-radius:4px;
+    position:relative;
+}
+
+.mb-volume-handle{
+    background:transparent url(../images/player-volume-handle.png) no-repeat 0 0 scroll;
+    height:8px;
+    width:8px;
+    display:block;
+    position:relative;
+}
+
+
+.mb-volume-bar.show{
+    display:block;
+    position:absolute;
+    top:-126px;
+    right:106px;
+}
+
+.jp-volume-bar-value, jp-volume-bar{
+    display:none;
+}
+
+/** Seek Bar **/
+#jp-progress {
+    width: 100%;
+    position: relative;
+    background: transparent url(../images/player-slider-bg.png) repeat-x 0 0 scroll;
+    height: 9px;
+    top: 16px;
+    left: 0px;
+    cursor: pointer;
+    overflow: visible;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+}
+
+.jp-seek-bar {
+    height: 9px;
+    width: 100%;
+}
+
+.jp-play-bar {
+    background: transparent url(../images/player-slider-elapsed.png) repeat-x 0 0 scroll;
+    height: 9px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+}
+
+/*#progress-handle{*/
+/*width:100%;*/
+/*}*/
+
+.jp-seek-bar.ui-slider .ui-slider-handle {
+    display: block;
+    height: 17px;
+    width: 17px;
+    margin-left: -11px;
+    top: -3px;
+    background: transparent url(../images/player-slider-handle.png) no-repeat 0 0 scroll;
+    position: absolute;
+    outline: none !important;
+    border:none;
+}
+
+.jp-seek-bar.ui-widget-content{
+    bacground:none;
+    border:none;
+}
+
+/** Video **/
+.mb-show-video{
+    position:absolute;
+    height:300px;
+    width:500px;
+    z-index:999999999;
+    background-color:#000;
+}
+
+.mb-hide-video {
+    height: 1px !important;
+    width: 1px !important;
+    left: -99999999px;
+    z-index: -1;
+    overflow: hidden;
+    position: relative;
+}
+
+.mb-hide-video .mb-video-play{
+    display:none;
+}
+
+.mb-video-play{
+    display:none;
+    position: absolute;
+    z-index: 999999999;
+    width: 100px;
+    height: 80px;
+    font-size: 80px;
+    border-radius:20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border: 2px solid #CCC;
+    opacity: .95;
+    color: #fff;
+    padding: 0 0px 20px 28px;
+    background: #7d7e7d; /* old browsers */
+    background: -moz-linear-gradient(top, #7d7e7d 0%, #474542 42%, #332F2F 49%, #0e0e0e 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #7d7e7d), color-stop(42%, #474542), color-stop(49%, #332F2F), color-stop(100%, #0e0e0e)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7d7e7d', endColorstr = '#0e0e0e', GradientType = 0); /* ie */
+    background: -o-linear-gradient(top, #7d7e7d 0%, #474542 42%, #332F2F 49%, #0e0e0e 100%); /* opera */
+    cursor:pointer;
+}
+
+.mb-video-play:hover{
+    opacity:1;
+}
+
+.mb-full-screen, .mb-restore-screen{
+    height:0;
+    width:0;
+    position:absolute;
+    top:6px;
+    right:6px;
+    z-index:1;
+}
+
+.mb-full-screen{
+    z-index:2;
+}
+
+.show-video-full .mb-restore-screen{
+    z-index:3;
+}
+
+/*************************************/
+/**      Interface Components
+**************************************/
+
+/** Thumb List **/
+#mb-interface-wrapper {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: #343536;
+}
+
+.mb-thumb-list-container {
+    height: 119px; /*!important*/
+}
+
+.mb-thumb-list-wrapper {
+    opacity: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.mb-thumb-list-wrapper, .mb-thumb-list {
+    background:none;
+    width: 100%;
+    position: absolute;
+    margin: 0;
+    height: 109px;
+    left: 0;
+}
+
+.mb-thumb-list-item {
+    width: 80px;
+    height: 94px;
+    padding: 0;
+    float: left;
+    margin: 0 3px;
+    border-radius: 3px;
+    text-align: center;
+    color: #333;
+    cursor: pointer;
+    list-style: none;
+    position:relative;
+    top:7px;
+}
+
+.mb-thumb-list-item:hover, .mb-thumb-list-item.current {
+    color: #000;
+}
+
+.mb-thumb {
+    display: block;
+    width: 70px;
+    height: 70px;
+    margin: 4px auto 0 auto;
+    background: transparent url(../images/thumb-list-unknown.png) no-repeat center center scroll;
+}
+
+.mb-thumb img{
+    width:100%;
+    height:100%;
+    opacity:0;
+}
+.mb-thumb-title {
+    margin: 6px auto 0 auto;
+    display: block;
+    width: 70px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+/** List **/
+.mb-list {
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+    color: #a9a9a9;
+    width:100%;
+}
+
+.mb-list-item {
+border-top: 1px solid #999999;
+    cursor: pointer;
+    height: 24px;
+    padding: 6px 0 0 12px;
+    padding: 6px 0 0 12px;
+}
+
+.mb-list-item.even {
+    background:transparent url(../images/list-bg.png) repeat 0 0 scroll;
+}
+
+.mb-list-item:hover {
+    background: #1372ae;
+    border-top: 1px solid #428ebe;
+    color: #fff;
+}
+
+.mb-list-item a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 30px;
+}
+
+.mb-list-item:hover a {
+    color: #fff;
+}
+
+.mb-list-item:last-child {
+    border-bottom: 1px solid #404142;
+}
+
+/** Album Cover **/
+
+.mb-album-cover {
+    border: 1px solid #000;
+    float: left;
+    margin: 0 auto;
+    opacity: 0;
+    position: relative;
+
+}
+
+.mb-album-cover-highlight {
+    border: 1px solid #fff;
+    opacity: .3;
+    position: relative;
+    z-index: 2;
+}
+
+.mb-album-cover .mb-album-cover-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    -webkit-box-reflect: below 0px -webkit-gradient(linear, 0% 0%, 0% 100%, from(transparent), color-stop(0.9, transparent), to(rgba(255, 255, 255, 0.496094))) 0 0 0 0 stretch stretch;
+
+}
+
+/** Description **/
+.mb-description {
+    height: 100%;
+    width: 100%;
+
+}
+
+.mb-description .mb-artist {
+    height: 33%;
+}
+
+.mb-description .mb-title {
+    height: 33%;
+}
+
+.mb-description p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: auto;
+    height:100%;
+}
+
+.mb-description .mb-album {
+    height: 33%;
+}
+
+/** Image Background **/
+.mb-background-image-container {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    bacground-color: #000;
+}
+
+.mb-background-image img {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+/** Thumb Wall **/
+.mb-thumb-wall {
+    margin: 0;
+}
+
+.mb-thumb-wall li {
+    list-style: none;
+}
+
+.mb-thumb-wall-item {
+    float: left;
+    background-color: #000;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.mb-thumb-wall-item:hover {
+    z-index: 1;
+}
+
+.mb-thumb-inner{
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    box-shadow:inset 0 0 3px rgba(255, 255, 255, .3);
+    -moz-box-shadow:inset 0 0 3px rgba(255, 255, 255, .3);
+    -webkit-box-shadow:inset 0 0 3px rgba(255, 255, 255, .3);
+    -ms-box-shadow:inset 0 0 3px rgba(255, 255, 255, .3);
+}
+.mb-thumb-wall-item img {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.mb-thumb-wall-item:hover .thumb-title {
+    display: block;
+}
+
+.mb-thumb-wall-item .thumb-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 3px 0;
+    background: #000;
+    color: #aaa;
+    text-align: center;
+    display: none;
+}
+
+a.thumb-title {
+    text-decoration: none;
+}
+
+/** Folders **/
+
+.mb-folders {
+    margin: 0;
+}
+
+.mb-folders li {
+    list-style: none;
+}
+
+.mb-folder-outer {
+    background-color: #000;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    height:100%;
+
+}
+
+.mb-folder{
+    float: left;
+}
+
+.mb-folder:hover {
+    z-index: 1;
+}
+
+.mb-folder-inner{
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    box-shadow:inset 0 0 3px rgba(255, 255, 255, .3);
+    -moz-box-shadow:inset 0 0 3px rgba(255, 255, 255, .3);
+    -webkit-box-shadow:inset 0 0 3px rgba(255, 255, 255, .3);
+    -ms-box-shadow:inset 0 0 3px rgba(255, 255, 255, .3);
+}
+.mb-folder img {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.mb-open-folder{
+    width:80px;
+    text-align:center;
+    bottom: 0;
+    display: block;
+    margin:0 auto 0 auto;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    top: 50%;
+    margin-top:-15px;
+    background: #666 url(../images/button-overlay.png) repeat-x 0 0 scroll;
+    color: #fff;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 12px;
+    display: block;
+    padding: 6px 12px;
+    border-color: rgba(0, 0, 0, 0.20);
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    -ms-border-radius: 14px;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    opacity:0;
+    -moz-transition: all 0.4s ease-out;
+    -webkit-transition: all 0.4s ease-out;
+}
+
+.mb-folder:hover .mb-open-folder{
+    opacity:1;
+}
+
+.mb-folder-name{
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    margin: 8px auto 0 auto;
+}
+
+/** Folder Switcher **/
+.mb-folder-switcher{
+    margin:0 auto;
+}
+
+.mb-folder-switcher .next-folder, .mb-folder-switcher .prev-folder{
+    float:left;
+    width:8%;
+    height:8%;
+    text-indent:-999999999999px;
+    top:35%;
+    position:relative;
+    overflow:visible;
+    cursor:pointer;
+}
+
+.mb-folder-switcher .next-folder img, .mb-folder-switcher .prev-folder img{
+    width:100%;
+    height:100%;
+    display:block;
+}
+
+.mb-folder-switcher .folders-viewport{
+    overflow:hidden;
+    margin:0 auto;
+    float:left;
+}
+
+.mb-folder-switcher .folders-viewport li{
+    list-style:none;
+    float:none;
+    margin-right:auto !important;
+    margin-left:auto !important;
+}
+
+.mb-simple-folder {
+    clear: both;
+    margin: 6px;
+    cursor: pointer;
+}
+/** Advanced List **/
+
+.slick-header-column.ui-state-default{
+    background:transparent url(../images/list-header-bg.png) repeat 0 0 scroll;
+    color:#222;
+}
+
+.slick-row .slick-cell{
+    border-top:1px solid #999;
+    color:#333;
+    padding:6px;
+}
+
+.slick-row.even .slick-cell{
+    background:transparent url(../images/list-bg.png) repeat 0 0 scroll;
+}
+
+.slick-row.odd .slick-cell{
+    background:none;
+}
+
+/** Album Cover Effects **/
+.glass {
+    background-color: #FFFFFF;
+    height: 100%;
+    left: -30%;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    top: -40%;
+    width: 130%;
+
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -wekit-border-radius: 50%;
+    -ms-border-radius: 50%;
+
+    box-shadow: 0 0 3px #FFFFFF;
+    -moz-box-shadow: 0 0 3px #FFFFFF;
+    -webkit-box-shadow: 0 0 3px #FFFFFF;
+    -ms-box-shadow: 0 0 3px #FFFFFF;
+
+    -moz-transform: rotate(10deg) skew(-50deg);
+    -webkit-transform: rotate(10deg) skew(-50deg);
+
+    -moz-transition: all 0.4s ease-out;
+    -webkit-transition: all 0.4s ease-out;
+}
+
+.mb-thumb-wall-item:hover .glass {
+    opacity: .15;
+}
+
+.glow {
+    -moz-transition: all 0.4s ease-out;
+    -webkit-transition: all 0.4s ease-out;
+    box-shadow: 0 0 8px #000;
+    -moz-box-shadow: 0 0 8px #000;
+    -webkit-box-shadow: 0 0 8px #000;
+    -ms-box-shadow: 0 0 8px #000;
+
+
+}
+
+.glow:hover {
+    -moz-box-shadow: 0 0 12px #000;
+    -webkit-box-shadow: 0 0 12px #000;
+    z-index: 1000;
+}
+
+/* Curved shadows */
+.drop-shadow {
+    position: relative;
+    float: left;
+    margin: 100px auto;
+    background: #fff;
+    overflow:visible;
+}
+
+.drop-shadow:before,
+.drop-shadow:after {
+    content: "";
+    position: absolute;
+    z-index: -2;
+}
+
+.drop-shadow:before {
+    top: 10px;
+    bottom: 10px;
+    left: 0;
+    right: 50%;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    -moz-border-radius: 10px / 100px;
+    border-radius: 10px / 100px;
+}
+
+.drop-shadow:before {
+    top: 50%;
+    bottom: 0;
+    left: 10px;
+    right: 10px;
+    -moz-border-radius: 100px / 10px;
+    border-radius: 100px / 10px;
+}
+
+/** Currently Playing Item **/
+.mb-item-playing{
+    font-weight:bold;
+}
+
+/** Scrollbar **/
+/* IE6 float double margin bug */
+
+.scrollable {
+    width: 100%;
+    clear: both;
+    height: 100%;
+    position: relative;
+}
+
+.scrollable  .viewport {
+    width: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.scrollable.vertical .viewport {
+    height: inherit;
+}
+
+.scrollable  .scroll-content {
+    list-style: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.scrollable  .thumb .end,
+.scrollable  .thumb {
+/*background-color: #003D5D;*/
+}
+
+.scrollable  .scrollbar {
+    position: relative;
+    float: right;
+    width: 10px;
+
+}
+
+.vertical .scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.scrollable  .track {
+    width: 8px;
+    height: 8px;
+    position: relative;
+    padding: 0 1px;
+    background: transparent url(../images/scroll-track.png) repeat-x 0 0 scroll;
+    border:none;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -ms-border-radius: 2px;
+
+}
+
+.scrollable.vertical .track {
+    background: #333 url(../images/scroll-track-vertical.png) repeat-y 0 0 scroll;
+}
+
+.scrollable  .thumb {
+    height: 8px;
+    width: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    background: #aaa url(../images/scrollbar.png) repeat-x 0 0 scroll;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -ms-border-radius: 2px;
+}
+
+.scrollable.vertical .thumb {
+    background: #aaa url(../images/scrollbar-vertical.png) repeat-y 0 0 scroll;
+}
+
+.scrollable  .thumb .end {
+    overflow: hidden;
+    height: 5px;
+    width: 13px;
+}
+
+.scrollable  .disable {
+    display: none;
+}
+
+
+
+
+/** Loading Overlay **/
+.loading-overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:999999;
+}
+
+/** Temp Container **/
+.temp-container{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:999998;
+    opacity:0;
+}
+
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+/* http://perishablepress.com/press/2009/12/06/new-clearfix-hack */
+
+.clearfix:after {
+    clear: both;
+    content: ' ';
+    display: block;
+    font-size: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+

@@ -1,0 +1,217 @@
+<script id="mb-templates-tmpl" type="text/x-jquery-tmpl">
+    {{if type == 'list'}}
+    <div id="mb-list-container " class="scrollable vertical">
+
+        <div class="viewport">
+            <ol class="scroll-content jp-playlist mb-list" id="${id}"></ol>
+        </div>
+
+        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+    </div>
+
+    {{/if}}
+
+
+    {{if type == 'list-item'}}
+    <li class="mb-list-item ${itemClass}"><a tabindex="1" id="${id}" href="javascript:void(0)">${name}</a></li>
+    {{/if}}
+
+    {{if type == 'advanced-list'}}
+    <div class="mb-advanced-list  "></div>
+    {{/if}}
+
+    {{if type =='thumb-list'}}
+    <div id="mb-thumb-list-container" class="mb-thumb-list-container  scrollable">
+
+        <div id="${id}" class="viewport mb-thumb-list-wrapper">
+            <ol class="scroll-content mb-thumb-list"></ol>
+        </div>
+
+        <div class="scrollbar clearfix"><div class="track clearfix"><div class="thumb"><div class="end"></div></div></div></div>
+    </div>
+    {{/if}}
+
+    {{if type =='thumb-list-item'}}
+    <li id="${id}" class="mb-thumb-list-item">
+        <span class="mb-thumb">{{html img}}</span>
+        <span class="mb-thumb-title">${title}</span>
+    </li>
+    {{/if}}
+
+    {{if type == 'album-cover'}}
+    <div id="${id}" class="mb-album-cover ">
+        <div class="mb-album-cover-highlight"></div>
+        <span class="mb-album-cover-img">${img}</span>
+    </div>
+    {{/if}}
+
+    {{if type == 'album-cover-img'}}
+    <img src="${img}" alt="album cover"/>
+    {{/if}}
+
+    {{if type == 'description'}}
+    <div class="mb-description"></div>
+    {{/if}}
+
+    {{if type == 'description-title'}}
+    <div class="mb-title clearfix"><p>${value}</p></div>
+    {{/if}}
+
+    {{if type == 'description-album'}}
+    <div class="mb-album clearfix"><p>${value}</p></div>
+    {{/if}}
+
+    {{if type == 'description-artist'}}
+    <div class="mb-artist clearfix"><p>${value}</p></div>
+    {{/if}}
+
+    {{if type == 'background-image'}}
+    <div class="mb-background-image-container "></div>
+    {{/if}}
+
+    {{if type == 'background-image-img'}}
+    <img src="${img}" class="mb-background-image" alt="album cover"/>
+    {{/if}}
+
+
+
+    {{if type == 'thumb-wall'}}
+    <div id="mb-thumb-wall-container " class="scrollable vertical">
+
+        <div class="viewport">
+            <ol class="mb-thumb-wall scroll-content clearfix " id="${id}"></ol>
+        </div>
+
+        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+    </div>
+    {{/if}}
+
+
+    {{if type == 'thumb-wall-item'}}
+    <li id="${id}" class="${itemClass} drop-shadow curved curved-hz-1" style="width:${size}px; height:${size}px; background-color:${color}; margin:${space}px;">
+
+        <!--<div class="glass"></div>-->
+        {{if img != false}}
+        <img src="${img}" alt="album cover"/>
+        {{/if}}
+        <a tabindex="1" class="thumb-title" href="javascript:void(0)">${name}</a>
+
+        <div class="mb-thumb-inner" style="height:${innerSize}px;"></div>
+    </li>
+    {{/if}}
+
+    {{if type == 'scroll-bar'}}
+    <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+    {{/if}}
+
+    {{if type == 'interface-wrapper'}}
+    <div id="mb-interface-wrapper"></div>
+    {{/if}}
+
+    {{if type == 'player-interface'}}
+    <div id="mb-player-wrapper" {{if showPlayer == false}} style="display:none;" {{/if}}>
+
+        <div class="not-playing" id="mb-player-interface">
+            <ul id="jp-controls" class="jp-controls">
+                <li><a tabindex="1" class="jp-play" href="javascript:void(0)">play</a></li>
+                <li><a tabindex="1" class="jp-pause" href="javascript:void(0)">pause</a></li>
+                <li class="hide"><a tabindex="1" class="jp-stop" href="javascript:void(0)">pause</a></li>
+                <li class="hide"><a tabindex="1" class="jp-mute" href="javascript:void(0)">pause</a></li>
+                <li class="hide"><a tabindex="1" class="jp-unmute" href="javascript:void(0)">pause</a></li>
+                <li><a tabindex="1" class="jp-previous" href="javascript:void(0)">previous</a></li>
+                <li><a tabindex="1" class="jp-next" href="javascript:void(0)">next</a></li>
+            </ul>
+
+            <div id="jp-progress-wrapper">
+                <div id="jp-progress" class="jp-progress">
+                    <div class="jp-seek-bar">
+                        <div class="jp-play-bar"></div>
+                        <div id="progress-handle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="jp-right-controls">
+
+                <div class="jp-volume-indicator"></div>
+
+                <div class="mb-volume-bar">
+                     <div class="mb-volume-slider">
+                         <span class="mb-volume-handle"></span>
+                     </div>
+                </div>
+
+                <div class="jp-volume-bar">
+                    <div class="jp-volume-bar-value"></div>
+                </div>
+
+                <div id="jp-times">
+                    <span class="jp-current-time"></span>
+                    <span class="jp-duration"></span>
+                </div>
+
+            </div>
+                <!--&lt;!&ndash;<div class="jp-video-play"></div>&ndash;&gt;-->
+        </div>
+
+    </div>
+    {{/if}}
+
+    {{if type == 'player'}}
+    <div id="mb-player" class="mb-hide-video">
+        <div class="jp-jplayer" id="jquery_jplayer"></div>
+        <div class="jp-video-play mb-video-play">&#9658;</div>
+        <div class="jp-full-screen mb-full-screen"></div>
+        <div class="jp-restore-screen mb-restore-screen"></div>
+    </div>
+    {{/if}}
+
+    {{if type == 'folders'}}
+    <ol id="${id}" class="mb-folders "></ol>
+    {{/if}}
+
+    {{if type == 'folder'}}
+    <li id="${id}" class="mb-folder" style="height:${size}px; width:${size}px; margin:${space}px;">
+        <div class="mb-folder-outer glow">
+            <div class="mb-folder-inner">
+                <span class="mb-folder-img">${img}</span>
+                <div class="mb-open-folder">Open Folder</div>
+            </div>
+        </div>
+        <span class="mb-folder-name">${name}</span>
+    </li>
+    {{/if}}
+
+    {{if type == 'simple-folder'}}
+    <li id="${id}" class="mb-simple-folder mb-folder">${name}</li>
+    {{/if}}
+
+    {{if type == 'folder-switcher'}}
+    <div class="mb-folder-switcher">
+        <span class="prev-folder"><img src="images/prev.png"/></span>
+        <ol class="folders-viewport"></ol>
+        <span class="next-folder"><img src="images/next.png"/></span>
+    </div>
+    {{/if}}
+
+    {{if type == 'folder-back-button'}}
+    <div class="mb-folder-back-button button"><span>Back</span></div>
+    {{/if}}
+
+    {{if type == 'folder-additional-views'}}
+    <div class="mb-folder-additional-views"></div>
+    {{/if}}
+
+    {{if type == 'folder-additional-view'}}
+    <div class="mb-folder-additional-view button"><span>${viewName}</span></div>
+    {{/if}}
+
+    {{if type == 'loading-overlay'}}
+    <div class="loading-overlay"></div>
+    {{/if}}
+
+    {{if type == 'temp-container'}}
+    <div class="temp-container"></div>
+    {{/if}}
+
+</script>

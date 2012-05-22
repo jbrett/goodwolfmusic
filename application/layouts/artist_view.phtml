@@ -1,0 +1,438 @@
+<?php echo $this->doctype(); ?>
+<html>
+<head>
+   <?php echo $this->headMeta(); ?>
+   <?php echo $this->headTitle(); ?>
+   <?php echo $this->headLink(); ?>
+   <?php echo $this->headScript(); ?>
+</head>
+<style type="text/css">
+        .homepage-slider {height:314px; margin-bottom:0;}
+                .homepage-slider .navigation a { color: #000; }
+                .search { position:absolute; bottom:62px; right:10px; z-index: 21;margin: 0 0 0 0; overflow: hidden; }
+		.search .input-search { width: 204px; height: 23px; padding: 0 0 0 13px; font: bold 11px Arial, sans-serif; color: #000; text-shadow: #ededed 0 1px 0; border: none; background: url(/images/input-search-1.png) 0 0 no-repeat; float: left; }
+		.search .input-submit { width: 33px; height: 23px; background: url(/images/input-submit-1.png) 0 0 no-repeat; float: left; border: none; text-indent: -5000px; }
+        .homepage-slider .navigation { width: 914px; height: 54px; margin: 0 0 0 -7px; text-shadow: #840200 0 1px 0; background: url(/images/homepage-slider-navigation-bg-pitch-black.png) 0 0 no-repeat; position: absolute; bottom: 0; z-index: 300; }
+	.homepage-slider .navigation a { color: #000; }
+	.homepage-slider .navigation a:hover { color: #3F7D97; }
+        .left-content-sidebar-wrapper { padding: 40px 0 0 0; margin: 0 50px; background: url(/images/left-content-sidebar-wrapper-bg.png) 0 0 no-repeat; z-index: 20; position: relative; }
+        .post h1, .post h2, .post h3, .post h4, .post h5, .post h6 { padding: 7px 0 0 0; margin: 0 0 10px 0; color: #5ECCFB; }
+        .post .article-title { margin: 0 0 10px 0; padding: 0; font-size: 40px; line-height: 31px; text-transform: uppercase; }
+			.post .article-title a { color: #5ECCFB; background-color: rgba(0, 0, 0, 0.5); }
+			.post .article-title a:hover { color: #5ECCFB; }
+        .post .gallery-preview-box { width: auto; height: auto; overflow:auto; padding: 24px; margin: 15px 0 30px 0; background: url(/images/gallery-preview-box-bg-texture.png); text-align: center; border-style:dashed; border-color:#9e9e9e; border-width:thin;}
+        .post .gallery-preview-box img { margin: 0 12px 6px 0; float: left; }
+        .post .gallery-preview-box span { padding: 0 0 0 21px; background: url(/images/ico-photo-1.png) 0 0 no-repeat; text-shadow: #000 0 1px 0; color: #9e9e9e; font-size: 11px; clear: both; font-weight: bold; }
+        .post .gallery-preview-box .show-all-photos { width: 80px; height: 80px; padding: 12px 0 0 0; margin: 0 0 6px 0; color: #ff8a00; text-shadow: #000 0 1px 0; font-weight: bold; font-size: 11px; text-align: center; float: left; text-decoration: underline; background: url(/images/show-all-photos-bg.png) 0 0 no-repeat; }
+        .post .gallery-preview-box .show-all-photos:hover { color: #ffca11; }
+        .gallery-preview-box a {width: 80px; height:90px; margin: 0 20px 5px 0; float: left; opacity:0.6;}
+        .gallery-preview-box a:hover {opacity:0.9;}
+        .gallery-preview-box a.active {opacity:1;}
+
+        #songListContainer {width:auto;overflow:auto;background: url(/images/grundge-bg-1.png) 0 repeat;border-radius:4px;}
+        .mb-title {font-family:Arial, serif;color:#000;font-weight:bold;}
+        .mb-album {font-family:Arial, serif;color:#333;}
+        #songDescription {height:59px;padding:10px;color:#000;}
+        /* override some of the the main-stylesheet css settings to prevent the music player from rendering weird */
+        #jp-controls {margin: 0;}
+        .post li {background-image: none; padding:0;}
+        a.more-link {background-image: url(/images/btn-2-bg.png);background-color:#0A487B;padding-left:0;text-align:center;border-radius:2px;}
+        .sidebar .latest-news h5 a { text-decoration: none; background-color: rgba(0, 0, 0, 0.5); color: #C8EEF5; }
+        .sidebar .latest-activity .text h5 a { text-decoration: none; background-color: rgba(0, 0, 0, 0.5); color: #C8EEF5; }
+        .comments-header .user {color: #5ECCFB;}
+        .comments-author .user {color: #4249AA;}
+
+
+
+</style>
+<script type="text/javascript">
+    var mediaBox = null;
+    var albums = [
+
+        {
+            name: 'Moondance playlist 1',
+            image: '/uploads/127360.jpg',
+            playlist: [
+                {
+                    mp3:'/mediabox/music/Van Morrisson/Moondance/01 And It Stoned Me.mp3',
+                    meta_path:'/mediabox/music/Van Morrisson/Moondance/01 And It Stoned Me.mp3',
+                    title:'And It Stoned Me',
+                    name:'And It Stoned Me',
+                    path:'01 And It Stoned Me.mp3',
+                    album:'Moondance',
+                    artist: 'Van Morrisson'
+                },
+
+                {
+                    mp3:'/mediabox/music/Van Morrisson/Moondance/02 Moondance.mp3',
+                    meta_path:'/mediabox/music/Van Morrisson/Moondance/02 Moondance.mp3',
+                    title:'Moondance',
+                    name:'Moondance',
+                    path:'02 Moondance.mp3',
+                    album:'Moondance',
+                    artist: 'Van Morrisson'
+                }
+            ]
+        },
+        {
+            name: 'Moondance playlist 2',
+            image: '/uploads/127360.jpg',
+            playlist: [
+                {
+                    mp3:'/mediabox/music/Van Morrisson/Moondance/03 Crazy Love.mp3',
+                    meta_path:'/mediabox/music/Van Morrisson/Moondance/03 Crazy Love.mp3',
+                    title:'Crazy Love',
+                    name:'Crazy Love',
+                    path:'03 Crazy Love.mp3',
+                    album:'Moondance',
+                    artist: 'Van Morrisson'
+                },
+
+                {
+                    mp3:'/mediabox/music/Van Morrisson/Moondance/04 Caravan.mp3',
+                    meta_path:'/mediabox/music/Van Morrisson/Moondance/04 Caravan.mp3',
+                    title:'Caravan',
+                    name:'Caravan',
+                    path:'04 Caravan.mp3',
+                    album:'Moondance',
+                    artist: 'Van Morrisson'
+                }
+            ]
+        },
+        {
+            name: 'Moondance playlist 3',
+            image: '/uploads/127360.jpg',
+            playlist: [
+                {
+                    mp3:'/mediabox/music/Van Morrisson/Moondance/05 Into the Mystic.mp3',
+                    meta_path:'/mediabox/music/Van Morrisson/Moondance/05 Into the Mystic.mp3',
+                    title:'Into the Mystic',
+                    name:'Into the Mystic',
+                    path:'05 Into the Mystic.mp3',
+                    album:'Moondance',
+                    artist: 'Van Morrisson'
+                }
+            ]
+        }
+    ];
+    var currentAlbumIndex = 0;
+    var descriptionHeight = 0;
+
+    $(document).ready(function(){
+
+    $('body').ttwLoadMediaBoxDependencies('/mediabox/dependencies/', startMediaBox);
+
+    function prepWidgets() {
+        var widgets = [
+                    {
+                        widgetName:'List',
+                        anchor:'#songList',
+                        callback: resizePlaylist
+                    },
+                    {
+                        widgetName:'Description',
+                        anchor:'#songDescription'
+                    }];
+        return widgets;
+    }
+
+    function resizePlaylist(widget) {
+        if (descriptionHeight == 0) {
+            descriptionHeight = $('#songListContainer').outerHeight();
+        }
+        var widgetAnchor = widget.$anchor,
+            olHeight = $(widgetAnchor).find('ol').height();
+        $('#songList').height(olHeight);
+        if (olHeight != undefined
+                && descriptionHeight != undefined)
+        {
+            var newHeight = descriptionHeight + olHeight;
+            $('#songListContainer').height(newHeight);
+        }
+    }
+
+
+    function startMediaBox(){
+        mediaBox =  $('body').ttwMediaBox(albums[currentAlbumIndex].playlist, {
+                        playerAnchor:'#player',
+                        widgets:prepWidgets('mixed'),
+                        interfaceMgr:{
+                            widgets: {
+                                Description: {
+                                    order: 'title, album',
+                                    autoSize: false,
+                                    fontSize: '16px',
+                                    titleFontSize: false,
+                                    artistFontSize: false,
+                                    albumFontSize: false
+                                }
+                            }
+                        },
+                        debug:true,
+                        debugEvents:true
+                    });
+    }
+
+    function setActive(albumIndex){
+        currentAlbumIndex = albumIndex;
+        $('.gallery-preview-box').children('a').each(function(){
+            if (this.rel == albumIndex) {
+                $(this).addClass('active');
+            } else {
+                $(this).removeClass('active');
+            }
+        });
+    }
+
+    if (albums != undefined)
+    {
+        var albumContainer = $('.gallery-preview-box');
+        $(albums).each(function(i){
+            var albumImage = this.image,
+                albumPlaylist = this.playlist,
+                albumHtml = "<a href='javascript:void(0)' rel='" + i + "'><img src='" + albumImage + "' alt='' width='80' height='90'/></a>";
+            albumContainer.append(albumHtml);
+            albumContainer.find('a').last().bind('click', function() {
+                if (mediaBox != undefined
+                        && mediaBox != null)
+                {
+                    setActive(i);
+                    mediaBox.ttwMediaBox('swapPlaylist', albumPlaylist);
+                }
+            });
+        });
+        setActive(0);
+    }
+});
+</script>
+
+<body class="top">
+    <!-- BEGIN .main-body-wrapper -->
+    <div class="main-body-wrapper">
+            <!-- BEGIN .main-content-wrapper -->
+            <div class="main-content-wrapper">
+
+                    <!-- BEGIN .main-content -->
+                    <div class="main-content">
+                            <!-- BEGIN .homepage-slider -->
+                            <div class="homepage-slider">
+                                <!-- BEGIN .search -->
+                                <div class="search" >
+                                        <form action="javascript:void(0);">
+                                                <input type="text" class="input-search" placeholder="search here" />
+                                                <input type="submit" class="input-submit" />
+                                        </form>
+                                </div>
+                                <!-- END .search -->
+                                    <div class="navigation" style="z-index:10;">
+                                            <!-- BEGIN .main-menu -->
+                                                <div class="main-menu">
+                                                        <table>
+                                                                <tr>
+                                                                        <td>
+                                                                                <ul>
+                                                                                        <li><a href="javascript:;" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('goodwolfToolbar_r2_c1','','/images/goodwolfToolbar_r2_c1_f2.jpg',1);"><img name="goodwolfToolbar_r2_c1" src="/images/goodwolfToolbar_r2_c1.jpg" width="189" height="55" border="0" id="goodwolfToolbar_r2_c1" alt="" /></a></li>
+                                                                                        <li>
+                                                                                            <a href="javascript:;" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('goodwolfToolbar_r2_c2','','/images/goodwolfToolbar_r2_c2_f2.jpg',1);"><span><img name="goodwolfToolbar_r2_c2" src="/images/goodwolfToolbar_r2_c2.jpg" width="164" height="55" border="0" id="goodwolfToolbar_r2_c2" alt="" /></span></a>
+                                                                                            <ul>
+                                                                                                    <li><a href="blog.html">Browse Artists</a></li>
+                                                                                                    <li><a href="post.html">Artist Search</a></li>
+                                                                                            </ul>
+                                                                                        </li>
+                                                                                        <li><a href="javascript:;" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('goodwolfToolbar_r2_c3','','/images/goodwolfToolbar_r2_c3_f2.jpg',1);"><img name="goodwolfToolbar_r2_c3" src="/images/goodwolfToolbar_r2_c3.jpg" width="174" height="55" border="0" id="goodwolfToolbar_r2_c3" alt="" /></a></li>
+                                                                                        <li>
+                                                                                                <a href="javascript:;" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('goodwolfToolbar_r2_c4','','/images/goodwolfToolbar_r2_c4_f2.jpg',1);"><span><img name="goodwolfToolbar_r2_c4" src="/images/goodwolfToolbar_r2_c4.jpg" width="137" height="55" border="0" id="goodwolfToolbar_r2_c4" alt="" /></span></a>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <a href="javascript:;" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('goodwolfToolbar_r2_c5','','/images/goodwolfToolbar_r2_c5_f2.jpg',1);"><img name="goodwolfToolbar_r2_c5" src="/images/goodwolfToolbar_r2_c5.jpg" width="153" height="55" border="0" id="goodwolfToolbar_r2_c5" alt="" /></a>
+                                                                                            <ul>
+                                                                                                    <li><a href="photo-gallery.html">Photo gallery</a></li>
+                                                                                                    <li><a href="photo-gallery-list.html">Equipment</a></li>
+                                                                                                    <li><a href="photo-gallery-single.html">Location</a></li>
+                                                                                            </ul>
+                                                                                        </li>
+                                                                                        <li><a href="javascript:;" onmouseout="MM_swapImgRestore();" onmouseover="MM_swapImage('goodwolfToolbar_r2_c6','','/images/goodwolfToolbar_r2_c6_f2.jpg',1);"><img name="goodwolfToolbar_r2_c6" src="/images/goodwolfToolbar_r2_c6.jpg" width="153" height="55" border="0" id="goodwolfToolbar_r2_c6" alt="" /></a></li>
+                                                                                        <!--<li><a href="contact-us.html">video</a></li>-->
+                                                                                </ul>
+                                                                        </td>
+                                                                </tr>
+                                                        </table>
+                                                <div class="clear"></div>
+                                            <!-- END .main-menu -->
+                                            </div>
+                                    </div>
+                                    <div class="border">
+                                            <div class="border" style="position: absolute!important; margin: 0 0 0 0px!important;"></div>
+                                            <!--<div class="image-wrapper" id="homepage-slider">
+                                                    <img src="images/photos/no-image-850x370.jpg" width="850" height="370" class="image" alt="&lt;a href=&quot;http://rockstar.orange-themes.com/html/post.html&quot;&gt;Aliquam lorem libero mollis malesuada consectetur&lt;/a&gt;&lt;span&gt;Vivamus at turpis sed velit eleifend malesuada ut sed magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec purus vitae eros sodales iaculis at bibendum elit.&lt;/span&gt;"/>
+                                                    <img src="images/photos/no-image-850x370.jpg" width="850" height="370" class="image" alt="&lt;a href=&quot;http://rockstar.orange-themes.com/html/post.html&quot;&gt;Fusce interdum, quam at feugiat aliquet&lt;/a&gt;&lt;span&gt;Maecenas neque est, feugiat quis porta in, condimentum eget arcu. Maecenas fringilla aliquam ultricies.Nam ullamcorper porta lorem ut adipiscing.&lt;/span&gt;"/>
+                                                    <img src="images/photos/no-image-850x370.jpg" width="850" height="370" class="image" alt="&lt;a href=&quot;http://rockstar.orange-themes.com/html/post.html&quot;&gt;Donec et mauris quis tellus pharetra tempor&lt;/a&gt;&lt;span&gt;Pellentesque vel turpis nec leo tincidunt sollicitudin ac non risus. Ves tibu lum ultrices feugiat velit, quis tincid unt velit volutpat nec. Vivamus pharetra fringilla augue, a elementum ante ultrices tincidunt.&lt;/span&gt;"/>
+                                                    <img src="images/photos/no-image-850x370.jpg" width="850" height="370" class="image" alt="&lt;a href=&quot;http://rockstar.orange-themes.com/html/post.html&quot;&gt;Nullam pellentesque aliquet malesuada&lt;/a&gt;&lt;span&gt;Proin egestas iaculis enim, ullamcorper porttitor justo placerat quis. Sed adipiscing ipsum sed leo molestie auctor. Nam ullamcorper porta lorem ut adipiscing.&lt;/span&gt;"/>
+                                                    <img src="images/photos/no-image-850x370.jpg" width="850" height="370" class="image" alt="&lt;a href=&quot;http://rockstar.orange-themes.com/html/post.html&quot;&gt;Vivamus at turpis sed velit eleifend malesuada&lt;/a&gt;&lt;span&gt;In hac habitasse platea dictumst. Nunc ipsum neque, vulputate nec laoreet at, venenatis at est. Donec et mauris quis tellus pharetra tempor nec eget diam. Nulla sapien diam, tincidunt.&lt;/span&gt;"/>
+                                            </div>-->
+                                    </div>
+                            <!-- END .homepage-slider -->
+                            </div>
+
+
+
+
+
+
+
+                            <!-- BEGIN .left-content-sidebar-wrapper -->
+                            <div class="left-content-sidebar-wrapper" style="position: static;">
+
+                                    <!-- BEGIN .left-content -->
+                                    <div class="left-content">
+
+
+                                            <?php echo $this->layout()->content; ?>
+
+                                    <!-- END .left-content -->
+                                    </div>
+                                    <!-- BEGIN .sidebar -->
+                                    <div class="sidebar">
+
+                                        <!-- BEGIN .search -->
+                                        <!--<div class="search">
+                                                <form action="">
+                                                        <input type="text" class="input-search" placeholder="search here" />
+                                                        <input type="submit" class="input-submit" />
+                                                </form>
+                                        </div>-->
+                                        <!-- END .search -->
+
+                                            <!-- BEGIN .sidebar-item .latest-activity -->
+                                            <div class="sidebar-item">
+                                                    <div class="latest-news">
+                                                            <div class="main-title-1">
+                                                                    <span>Latest Blogs</span>
+                                                                    <a href="#">show all</a>
+                                                            </div>
+                                                            <!-- BEGIN .list -->
+                                                            <div class="list">
+                                                                    <!-- BEGIN .item -->
+                                                                    <div class="item">
+                                                                            <h5><a href="#">Proin luctus ullamcor vulputate nunc vitaetas</a></h5>
+                                                                            <div class="info">
+                                                                                    <a href="#" class="time">09.07.2011</a>
+                                                                                    <a href="#" class="comment-nr">9</a>
+                                                                            </div>
+                                                                            <p class="intro">
+                                                                                    Cras vulputate dui at felis varius et consecte tur risus viverra. Vivamus commodo gravida malesuada.consequat dui.
+                                                                            </p>
+                                                                            <p><a href="#" class="more-link"><span>Read more</span></a></p>
+                                                                    <!-- END .item -->
+                                                                    </div>
+                                                                    <!-- BEGIN .item -->
+                                                                    <div class="item">
+                                                                            <h5><a href="#">Aenean sollicitudin varius nullaa ullamcorper turpis dictum ut</a></h5>
+                                                                            <div class="info">
+                                                                                    <a href="#" class="time">09.07.2011</a>
+                                                                                    <a href="#" class="comment-nr">12</a>
+                                                                            </div>
+                                                                            <p class="intro">
+                                                                                    Praesent consequat velit id diam porta ut ultricies enim hendrerit. Morbi leo velit, consectetur at accumsan volutpat, bibendum
+                                                                            </p>
+                                                                            <p><a href="#" class="more-link"><span>Read more</span></a></p>
+                                                                    <!-- END .item -->
+                                                                    </div>
+                                                                    <!-- BEGIN .item -->
+                                                                    <div class="item">
+                                                                            <h5><a href="#">Phasellus ornare justo velnul</a></h5>
+                                                                            <div class="info">
+                                                                                    <a href="#" class="time">09.07.2011</a>
+                                                                                    <a href="#" class="comment-nr">12</a>
+                                                                            </div>
+                                                                            <p class="intro">
+                                                                                    Praesent consequat velit id diam porta ut ultricies enim hendrerit. Morbi leo velit, consectetur at accumsan volutpat, bibendum
+                                                                            </p>
+                                                                            <p><a href="#" class="more-link"><span>Read more</span></a></p>
+                                                                    <!-- END .item -->
+                                                                    </div>
+                                                            </div>
+                                                            <!-- END .list -->
+                                                    </div>
+                                            <!-- END .sidebar-item .latest-activity -->
+                                            </div>
+
+                                            <!-- BEGIN .sidebar-item .latest-activity -->
+                                            <div class="sidebar-item">
+                                                    <div class="latest-activity">
+                                                            <div class="main-title-1">
+                                                                    <span>Events</span>
+                                                                    <a href="#">show all</a>
+                                                            </div>
+                                                            <!-- BEGIN .list -->
+                                                            <div class="list">
+                                                                    <!-- BEGIN .item -->
+                                                                    <div class="item">
+                                                                            <div class="image">
+                                                                                    <a href="#"><img src="/uploads/vm-inner.jpg" alt="" width="70" height="75" /></a>
+                                                                            </div>
+                                                                            <div class="text">
+                                                                                    <h5><a href="#">Proin luctus ullamcor ulputate nunc vitae</a></h5>
+                                                                                    <p><a href="#" class="more-link"><span>Read more</span></a></p>
+                                                                            </div>
+                                                                    <!-- END .item -->
+                                                                    </div>
+                                                                    <!-- BEGIN .item -->
+                                                                    <div class="item">
+                                                                            <div class="image">
+                                                                                    <a href="#"><img src="/uploads/vm-inner.jpg" alt="" width="70" height="75" /></a>
+                                                                            </div>
+                                                                            <div class="text">
+                                                                                    <h5><a href="#">Aenean iaculis, risus eget sollicitudin pretiumligula</a></h5>
+                                                                                    <p><a href="#" class="more-link"><span>Read more</span></a></p>
+                                                                            </div>
+                                                                    <!-- END .item -->
+                                                                    </div>
+                                                                    <!-- BEGIN .item -->
+                                                                    <div class="item">
+                                                                            <div class="image">
+                                                                                    <a href="#"><img src="/uploads/vm-inner.jpg" alt="" width="70" height="75" /></a>
+                                                                            </div>
+                                                                            <div class="text">
+                                                                                    <h5><a href="#">Pellentesque aliquet orcid ornare quamsit amet</a></h5>
+                                                                                    <p><a href="#" class="more-link"><span>Read more</span></a></p>
+                                                                            </div>
+                                                                    <!-- END .item -->
+                                                                    </div>
+                                                            <!-- END .list -->
+                                                            </div>
+                                                    </div>
+                                            <!-- END .sidebar-item .latest-activity -->
+                                            </div>
+
+                                    <!-- END .sidebar -->
+                                    </div>
+
+
+                            <!-- END .left-content-sidebar-wrapper -->
+                            </div>
+
+                            <div class="clear"></div>
+
+                            <div class="main-footer">
+                                    <p>Copyright &amp; Goodwolfmusic © <?=date('Y');?> </p>
+                                    <!--<div>
+                                            <a href="#"><img src="images/ico-youtube-1.png" alt="YouTube" width="23" height="21" /></a>
+                                            <a href="#"><img src="images/ico-facebook-1.png" alt="Facebook" width="23" height="21" /></a>
+                                            <a href="#"><img src="images/ico-twitter-2.png" alt="Facebook" width="23" height="21" /></a>
+                                            <a href="#"><img src="images/ico-flickr-2.png" alt="Facebook" width="23" height="21" /></a>
+                                            <a href="#"><img src="images/ico-rss-1.png" alt="Facebook" width="23" height="21" /></a>
+                                    </div>-->
+                            </div>
+
+                    <!-- END .main-content -->
+                    </div>
+
+            <!-- END .main-content-wrapper -->
+            </div>
+
+
+    <!-- END .main-body-wrapper -->
+    </div>
+</body>
+</html>

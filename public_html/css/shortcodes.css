@@ -1,0 +1,68 @@
+.btn-1 { height: 30px; margin: 0 7px 0 0; padding: 0 0 1px 0; background: url(../images/btn-1-bg.png) 0 0 repeat-x; color: #000; float: left; border-radius: 3px 3px 5px 5px; border-bottom: 1px solid #454545; }
+	.btn-1 span { height: 25px; text-align: center; padding: 5px 15px 0px 15px; float: left; font-size: 14px; font-weight: bold; text-transform: uppercase; border-radius: 3px; border-bottom: 1px solid #000; position: relative; }
+.btn-1:hover { color: #9c0000; }
+
+.btn-2 { height: 30px; margin: 0 7px 0 0; padding: 0 0 1px 0; float: left; border-radius: 3px 3px 5px 5px; border-bottom: 1px solid #454545; }
+	.btn-2 span { height: 25px; background-image: url(../images/btn-2-bg.png); background-position: 0 0; background-repeat: repeat-x; text-align: center; padding: 5px 15px 0px 15px; float: left; font-size: 14px; font-weight: bold; text-transform: uppercase; border-radius: 3px; border-bottom: 1px solid #000; position: relative; }
+.btn-2:hover span { background-image: url(../images/btn-2-bg.png); background-position: 0 -30px; }
+
+
+.btn-align-left { margin: 0 20px 20px 0; float: left; }
+.btn-align-right { margin: 0 0 20px 20px; float: right; }
+
+
+.spacer-1 { width: 100%; height: 4px; line-height: 4px; margin: 40px 0; line-height: 11px; background: url(../images/main-spacer-1.png) 0 0 repeat-x; }
+.spacer-2 { width: 100%; height: 1px; line-height: 1px; margin: 40px 0; line-height: 11px; background: url(../images/border-2.png) 0 0 repeat-x; }
+
+
+	.list-checkmark li { padding: 0 0 0 25px; background: url(../images/ico-check-1.png) 0 6px no-repeat; }
+	.list-cross li { padding: 0 0 0 22px; background: url(../images/ico-cross-1.png) 0 5px no-repeat; }
+
+
+.blockquote-quote-marks { margin: 30px auto; width: 478px; padding: 25px 0 0 0; background: url(../images/blockquote-quote-mark-top-bg.png) 0 10px no-repeat; }
+	.blockquote-quote-marks blockquote { margin: -15px 0 0 0; padding: 0 40px 4px 40px; background: url(../images/blockquote-quote-mark-bottom-bg.png) bottom right no-repeat; text-align: center; font-size: 17px; font-weight: bold; line-height: 26px; color: #ffd497; }
+
+.blockquote-box { margin: 30px auto; width: 478px; border: 1px dashed #5c5959; }
+	.blockquote-box blockquote { margin: 0; padding: 22px 40px 27px 40px; background-color: rgba(0, 0, 0, 0.4); text-align: center; font-size: 17px; font-weight: bold; line-height: 26px; color: #ffd497; }
+
+.blockquote-wings { margin: 30px auto; width: 478px; background: url(../images/wing-1.png) center center no-repeat; }
+	.blockquote-wings blockquote { width: 378px; padding: 2px 50px 4px 50px; margin: 0; text-align: center; font-size: 17px; font-weight: bold; line-height: 26px; color: #ffd497; }
+
+
+.contact-form { margin: 0 0 0 25px; overflow: hidden; }
+.contact-form p { margin: 0; }
+	.contact-form td { vertical-align: top; }
+	.contact-form .label { width: 125px; padding: 3px 0 0 0; font-weight: bold; }
+		.contact-form .error-message { text-align: center; color: #ff3535; font-weight: bold; padding: 7px 0 0 0; }
+	.contact-form .comment-spacer-1 { width: 7px; height: 7px; }
+	.contact-form .comment-spacer-2 { width: 8px; height: 8px; }
+	.contact-form .show-all { padding: 0 !important; }
+
+
+.rockstar-player { padding: 20px 0; }
+.rockstar-player .jp-audio { width: 500px; height: 59px; background: url(../images/player-bg.png) 0 0 no-repeat; position: relative; border: none; }
+
+div.jp-audio ul.jp-controls { position: absolute; height: 22px; width: 500px; padding: 0 !important; margin: 0 !important; }
+div.jp-audio ul.jp-controls li { margin: 0; padding: 0; }
+
+div.jp-audio div.jp-type-single div.jp-interface { height: 36px !important; padding: 16px 0 0 20px; width: 480px; position: relative !important; background: none; }
+div.jp-audio a.jp-play { width: 20px; height: 22px; background: url(../images/player-buttons.png) 0 0 no-repeat; display: block; position: absolute; cursor: pointer; }
+div.jp-audio a.jp-play:hover { background: url(../images/player-buttons.png) 0 0 no-repeat; }
+div.jp-audio a.jp-pause { width: 20px; height: 22px; background: url(../images/player-buttons.png) -1px -23px no-repeat; display: block; position: absolute; cursor: pointer; }
+
+div.jp-audio div.jp-type-single div.jp-progress { width: 220px !important; height: 10px !important; background: #000; border-radius: 10px; border-bottom: 1px solid #505050; position: absolute !important; top: 21px !important; left: 54px !important; }
+div.jp-audio div.jp-seek-bar { height: 10px; background: #000; border-radius: 10px; border-bottom: 1px solid #505050; }
+div.jp-audio div.jp-play-bar { height: 10px; background: url(../images/player-play-bar.png) 0 0 repeat-x; border-radius: 10px; }
+
+div.jp-current-time, div.jp-duration { position: absolute; color: #fff; font-style: normal; font: bold 11px Arial, sans-serif; }
+div.jp-current-time { width: auto; left: 295px; top: 19px; }
+div.jp-duration { width: auto; left: 335px; top: 19px; }
+
+div.jp-audio div.jp-volume-bar { position: absolute; top: 21px !important; left: 415px !important; width: 64px; height: 10px; background: #000; border-radius: 10px; border-bottom: 1px solid #505050; }
+div.jp-audio div.jp-volume-bar-value { height: 10px; background: url(../images/player-play-bar.png) 0 0 repeat-x; border-radius: 10px; }
+
+div.jp-audio div.jp-spacer-1 { position: absolute; color: #fff; font-style: normal; font: bold 11px Arial, sans-serif; left: 327px; top: 19px; }
+
+div.jp-audio div.jp-type-single a.jp-mute, div.jp-audio div.jp-type-single a.jp-unmute { position: absolute !important; display: block; }
+div.jp-audio div.jp-type-single a.jp-mute { width: 17px; height: 18px; left: 365px; top: 2px; background: url(../images/player-mute.png) 0 0 no-repeat; margin: 0; }
+div.jp-audio div.jp-type-single a.jp-unmute { width: 17px; height: 18px; left: 365px; top: 2px; background: url(../images/player-mute.png) 0 -18px no-repeat; margin: 0; }
