@@ -90,6 +90,17 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         );
 
         $router->addRoute('artist_event_view', $route);
+        
+        $route = new Zend_Controller_Router_Route(
+            '/contact',
+            array(
+                'action'     => 'contact',
+                'controller' => 'index',
+                'module'     => 'default'
+            )
+        );
+
+        $router->addRoute('contact_admin', $route);
 
 //        // catalog category product route
 //        $route = new Zend_Controller_Router_Route(
